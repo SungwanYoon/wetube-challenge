@@ -1,17 +1,12 @@
 import express from "express";
 import routes from "../routes";
-import {
-  home,
-  join,
-  login,
-  confirmAccount
-} from "../controllers/homeController";
+import { home, login, photos, profile } from "../controllers/homeController";
 
 const homeRouter = express.Router();
 
 homeRouter.get(routes.home, home);
-homeRouter.get(routes.join, join);
 homeRouter.get(routes.login, login);
-homeRouter.get(routes.confirmAccount, confirmAccount);
+homeRouter.get(routes.photos, photos);
+homeRouter.get(routes.profile, profile);
 
 export default homeRouter;
