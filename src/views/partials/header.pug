@@ -1,3 +1,6 @@
 header.header
     .header__column
         a(href=routes.home) Calvin
+    .header__column
+        form(action=routes.search, method="get")
+            input(type="text", placeholder="Search by term" name="term")
