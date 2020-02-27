@@ -9,7 +9,13 @@ const routes = {
   home: HOME,
   login: LOGIN,
   photos: PHOTOS,
-  profile: PROFILE,
+  profile: id => {
+    if (id) {
+      return `/users/${id}`;
+    } else {
+      return PROFILE;
+    }
+  },
 
   search: SEARCH
 };
