@@ -6,6 +6,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
+import "./db";
 import homeRouter from "./routers/homeRouter";
 
 import routes from "./routes";

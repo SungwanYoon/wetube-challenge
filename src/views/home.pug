@@ -1,4 +1,13 @@
 extends layouts/main.pug
+include mixins/movieBlock
 
 block content
-    h1=pageTitle
+    .movies
+        each movie in movies
+            +movieBlock({
+                title: movie.title_english,
+                year: movie.year,
+                summary: movie.summary
+            })
+            
+    
