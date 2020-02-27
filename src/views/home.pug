@@ -2,12 +2,15 @@ extends layouts/main.pug
 include mixins/movieBlock
 
 block content
+    if filtered
+        .search_header
+            h3 Searching by #{type} : #{searchingBy}
+
     .movies
         each movie in movies
             +movieBlock({
-                title: movie.title_english,
-                year: movie.year,
-                summary: movie.summary
+                id: movie.id,
+                title: movie.title
             })
             
     

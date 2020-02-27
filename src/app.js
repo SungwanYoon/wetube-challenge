@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
 import "./db";
-import homeRouter from "./routers/homeRouter";
+import movieRouter from "./routers/movieRouter";
 
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
@@ -26,6 +26,6 @@ app.use(morgan("combined"));
 
 app.use(localsMiddleware);
 
-app.use(routes.home, homeRouter);
+app.use(routes.home, movieRouter);
 
 export default app;

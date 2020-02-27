@@ -1,23 +1,17 @@
 const HOME = "/";
-const LOGIN = "/login";
-const PHOTOS = "/photos";
-const PROFILE = "/profile";
-
-const SEARCH = "/search";
+const DETAIL = "/:id";
+const FILTER = "/filter";
 
 const routes = {
   home: HOME,
-  login: LOGIN,
-  photos: PHOTOS,
-  profile: id => {
+  detail: id => {
     if (id) {
-      return `/users/${id}`;
+      return `/${id}`;
     } else {
-      return PROFILE;
+      return DETAIL;
     }
   },
-
-  search: SEARCH
+  filter: FILTER
 };
 
 export default routes;

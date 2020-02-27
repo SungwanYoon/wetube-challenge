@@ -1,5 +1,4 @@
 mixin movieBlock(movie = {})
     .movieBlock
-        h1= movie.title
-        h6= movie.year
-        h6= movie.summary
+        a(href=routes.detail(movie.id))
+            h1= movie.title
