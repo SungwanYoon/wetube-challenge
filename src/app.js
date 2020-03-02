@@ -6,7 +6,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 
-import "./db";
+import "./dbMongo";
 import movieRouter from "./routers/movieRouter";
 
 import routes from "./routes";

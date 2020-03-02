@@ -3,7 +3,7 @@ import {
   getMovies,
   getMovieByMinimumRating,
   getMovieByMinimumYear
-} from "../db";
+} from "../dbAxios";
 import routes from "../routes";
 
 export const home = (req, res) => {
