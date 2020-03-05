@@ -15,11 +15,28 @@ const MovieSchema = mongoose.Schema({
     type: String,
     required: "title is required"
   },
+  year: {
+    type: Number,
+    required: "year is required"
+  },
+  rating: {
+    type: String,
+    required: "rating is required"
+  },
   synopsis: {
     type: String,
     required: "synopsis is required"
   },
-  genres: [{ genre: String }]
+  genres: {
+    type: Array,
+    item: {
+      type: String
+    }
+  },
+  uploadedAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 if (YOUR_USERNAME === null || typeof YOUR_USERNAME !== "string") {

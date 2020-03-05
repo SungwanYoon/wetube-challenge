@@ -4,7 +4,8 @@ import {
   movieDetail,
   add,
   edit,
-  movieDelete
+  movieDelete,
+  search
 } from "../controllers/movieController";
 
 const movieRouter = express.Router();
@@ -28,6 +29,8 @@ movieRouter
   .route("/:id/delete")
   .get(movieDelete)
   .post(movieDelete);
+
+movieRouter.route("/search").get(search);
 
 movieRouter.get("/:id", movieDetail);
 
