@@ -1,11 +1,34 @@
 import express from "express";
-import routes from "../routes";
-import { home, movieDetail, filterMovie } from "../controllers/movieController";
+import {
+  home,
+  movieDetail,
+  add,
+  edit,
+  movieDelete
+} from "../controllers/movieController";
 
 const movieRouter = express.Router();
 
-movieRouter.get(routes.home, home);
-movieRouter.get(routes.filter, filterMovie);
-movieRouter.get(routes.detail(), movieDetail);
+movieRouter.get("/", home);
+/*
+Here add a way to handle GET and POST requests to the "/add" URL
+Make sure is ABOVE /:id or it won't work.
+*/
+movieRouter
+  .route("/add")
+  .get(add)
+  .post(add);
+
+movieRouter
+  .route("/:id/edit")
+  .get(edit)
+  .post(edit);
+
+movieRouter
+  .route("/:id/delete")
+  .get(movieDelete)
+  .post(movieDelete);
+
+movieRouter.get("/:id", movieDetail);
 
 export default movieRouter;

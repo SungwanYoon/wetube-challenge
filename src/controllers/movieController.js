@@ -1,50 +1,65 @@
-import {
-  getMovieById,
-  getMovies,
-  getMovieByMinimumRating,
-  getMovieByMinimumYear
-} from "../dbAxios";
-import routes from "../routes";
+import movie from "../models/movie";
 
-export const home = (req, res) => {
-  const movies = getMovies();
-  res.render("home", { pageTitle: "home", movies });
-};
-export const movieDetail = (req, res) => {
+export const home = (req, res) =>
+  res.render("home", { movies: getMovies(), pageTitle: "Movies!" });
+
+export const movieDetail = async (req, res) => {
   const {
     params: { id }
   } = req;
-  const movie = getMovieById(id);
-  res.render("detail", { pageTitle: movie.title, movie });
+
+  try {
+    const movie = await movie
+      .findById(id)
+      .populate("creator")
+      .populate("comments");
+    if (!movie || id === "favicon.ico") {
+      return res.render("404", { pageTitle: "Movie not found" });
+    } else {
+      return res.render(`detail`, { pageTitle: movie.title, movie });
+    }
+  } catch (error) {
+    res.redirect("/");
+  }
 };
-export const filterMovie = (req, res) => {
-  const {
-    query: { rating }
-  } = req;
-  const {
-    query: { year }
-  } = req;
-  if (rating) {
-    const movies = getMovieByMinimumRating(rating);
-    res.render("home", {
-      pageTitle: "home",
-      filtered: true,
-      type: "rating",
-      searchingBy: rating,
-      movies
+
+/*
+Write the controller or controllers you need to render the form
+and to handle the submission
+*/
+export const add = async (req, res) => {
+  if (req.method === "GET") {
+    return res.render("add", { pageTitle: "Add Movie" });
+  } else if (req.method === "POST") {
+    const {
+      body: { title, synopsis, genres }
+    } = req;
+
+    const newMovie = await movie.create({
+      title,
+      synopsis,
+      genres: genres.split(",")
     });
-  } else if (year) {
-    const movies = getMovieByMinimumYear(year);
-    res.render("home", {
-      pageTitle: "home",
-      filtered: true,
-      type: "year",
-      searchingBy: year,
-      movies
-    });
-  } else {
-    res.render("404", {
-      pageTitle: "404"
-    });
+    return res.redirect(`/${newVideo.id}`);
+  }
+};
+
+export const edit = (req, res) => {
+  if (req.method === "GET") {
+    return res.render("edit", { pageTitle: "edit Movie" });
+  } else if (req.method === "POST") {
+    const {
+      body: { title, synopsis, genres }
+    } = req;
+    addMovie({ title, synopsis, genres: genres.split(",") });
+    return res.redirect("/");
+  }
+};
+
+export const movieDelete = (req, res) => {
+  if (req.method === "GET") {
+    return res.render("delete", { pageTitle: "edit Movie" });
+  } else if (req.method === "POST") {
+    // delete Movie
   }
 };
