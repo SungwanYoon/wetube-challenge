@@ -1,0 +1,9 @@
+extends layouts/main.pug
+include mixins/movieBlock
+
+block content
+    form(action="/file", method="post",  enctype="multipart/form-data")
+        input(type="file", name="multerFile", required=true, accept="text/plain")
+        input(type="submit", value="Add Text")
+            
+    
